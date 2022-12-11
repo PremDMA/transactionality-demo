@@ -1,36 +1,18 @@
-package com.techprimers.transactionalitydemo.runner;
+package com.techprimers.transactionalitydemo.service;
 
 import com.techprimers.transactionalitydemo.model.User;
-import com.techprimers.transactionalitydemo.service.TestService;
-import com.techprimers.transactionalitydemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 
-@Component
-public class UserRunner implements CommandLineRunner {
-
+@Service
+public class TestService {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private TestService testService;
-
-    @Override
-    public void run(String... strings) throws Exception {
-
-        try {
-            test();
-        }
-        catch (RuntimeException exception) {
-            System.out.println(exception.getMessage());
-            System.out.println(userService.getUsers());
-        }
-        
-    }
 
     @Transactional
     public void test() throws Exception {
@@ -62,3 +44,4 @@ public class UserRunner implements CommandLineRunner {
         
     }
 }
+
